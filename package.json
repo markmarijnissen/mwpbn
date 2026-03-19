@@ -3,10 +3,9 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "build": "nuxt build",
-    "dev": "nuxt dev",
-    "generate": "nuxt generate",
-    "preview": "nuxt preview",
+    "build": "nuxt generate",
+    "dev": "nuxt dev --host",
+    "serve": "npx serve .output/public",
     "postinstall": "nuxt prepare"
   },
   "dependencies": {

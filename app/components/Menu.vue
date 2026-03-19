@@ -3,7 +3,7 @@
     <ul>
       <NuxtLink to="/" custom v-slot="{ navigate, isActive }">
         <li :class="{ 'is-active': isActive }">
-          <a @click="navigate" :href="null">Uitleg</a>
+          <a @click="navigate" :href="null">Start</a>
         </li>
       </NuxtLink>
 

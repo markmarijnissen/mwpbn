@@ -3,7 +3,7 @@
     <h4>Stap 1. Selecteer maatwerkplannen</h4>
     <article class="message">
         <div class="message-body">
-        Voeg de maatwerkplannen toe. Dit mag één voor één, maar je kunt ook de hele map <a href="https://boerennatuurnl.sharepoint.com/sites/DoorontwikkelingBoerenNatuur/Gedeelde%20documenten/Forms/AllItems.aspx?id=%2Fsites%2FDoorontwikkelingBoerenNatuur%2FGedeelde%20documenten%2FFase%202%20%2D%20Maatwerkplannen%2F1%2E%20Maatwerkplannen%2FMaatwerkplannen%20collectieven&viewid=60e6f717%2D647a%2D4a22%2Db25d%2Db07ead4d0685&p=true" target="_blank">downloaden</a> als zip en deze selecteren. De maatwerkplannen worden hier automatisch uitgehaald.
+        <a href="https://boerennatuurnl.sharepoint.com/sites/DoorontwikkelingBoerenNatuur/Gedeelde%20documenten/Forms/AllItems.aspx?id=%2Fsites%2FDoorontwikkelingBoerenNatuur%2FGedeelde%20documenten%2FFase%202%20%2D%20Maatwerkplannen%2F1%2E%20Maatwerkplannen%2FMaatwerkplannen%20collectieven&viewid=60e6f717%2D647a%2D4a22%2Db25d%2Db07ead4d0685&p=true" target="_blank">Download de hele map</a> als zip-bestand en voeg deze toe. Je kunt de maatwerkplannen ook één voor één selecteren.
         </div>
     </article>
     <Fileupload type="plan"></Fileupload>
