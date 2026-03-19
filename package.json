@@ -6,7 +6,8 @@
     "build": "nuxt generate",
     "dev": "nuxt dev --host",
     "serve": "npx serve .output/public",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "deploy":"npm run build && firebase deploy"
   },
   "dependencies": {
     "@nuxt/content": "^3.12.0",

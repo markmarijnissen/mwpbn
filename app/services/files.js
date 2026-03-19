@@ -53,7 +53,7 @@ const createDashboardWorkbook = async () => {
   const dashboardWb = new ExcelJS.Workbook();
   await dashboardWb.xlsx.load(dashboard.value.type === "custom" ? dashboard.value.customContent : dashboard.value.defaultContent);
   
-  // 2.5 Workaround for ExcelJS Conditional Formatting bug
+  // Workaround for ExcelJS Conditional Formatting bug
   dashboardWb.worksheets.forEach(sheet => {
     if (sheet.conditionalFormattings) {
       sheet.conditionalFormattings.forEach(cf => {
@@ -69,7 +69,7 @@ const createDashboardWorkbook = async () => {
     }
   });
 
-  // 2. Loop through all uploaded files
+  // Loop through all uploaded files
   await Promise.all(files.value.filter(file => file.data.valid).map(async (file, i) => {
     await addPlanToDashboard(file, dashboardWb, i + 1);
   }));
