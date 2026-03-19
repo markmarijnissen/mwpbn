@@ -71,8 +71,8 @@ export async function addPlanToDashboard(file, wb, index) {
     sheet.getRow(2).getCell(nameCol).value = planData.contactgegevens.collectief;
     sheet.getRow(2).getCell(nameCol + toelichtingOffset).value = planData.contactgegevens.collectief;
 
-    // Write the data matrix (Rows 3 to 42)
-    for (let nr = 1; nr <= 40; nr++) {
+    // Write the data matrix (Rows 3 to 45)
+    for (let nr = 1; nr <= 42; nr++) {
       const rIdx = nr + 3;
       if (dataObj[nr]) {
         sheet.getRow(rIdx).getCell(startValCol).value = dataObj[nr].waarde;
