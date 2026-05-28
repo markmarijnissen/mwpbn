@@ -85,20 +85,22 @@ export async function parsePlan(item) {
       data.contactgegevens.betrokkenen.push({ naam: firstCell, functie: row[3] || '' });
     }
   }
-  if(!data.contactgegevens.collectief) item.errors.push(`Contactgegevens niet ingevuld.`);
+  if(!data.contactgegevens.collectief) item.errors.push(`Contactgegev   ens niet ingevuld.`);
   if(data.contactgegevens.betrokkenen.length === 0) item.errors.push(`Niemand betrokken.`);
   data.status[0] = data.contactgegevens.betrokkenen.length;
 
   // --- TAB 2: Opgaven doorontwikkeling ---
   const tab2 = getSheetData('2. Opgaven doorontwikkeling');
+
+  const isTrue = (val) => val === true || String(val).toLowerCase() === 'true';
   
   let n = 0, count = 0;
   for (let r = 0; r < tab2.length; r++) {
     const row = tab2[r];
     const nr = parseInt(row[1]);
     if (!isNaN(nr)) {
-      const voldoen = row[3] === true || String(row[3]).toLowerCase() === 'true';
-      const ontwikkel = row[4] === true || String(row[4]).toLowerCase() === 'true';
+      const voldoen = isTrue(row[3]);
+      const ontwikkel = isTrue(row[4]);
       
       let val = 0;
       if (voldoen && ontwikkel) val = 3;

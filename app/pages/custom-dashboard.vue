@@ -5,7 +5,7 @@
         <div class="message-body">
         <p>De maatwerkplannen worden samengevoegd in één Excel bestand: <a href="/dashboard.xlsx">het dashboard</a>.</p>
 
-        <p>Je kunt dit dashboard <a href="/dashboard.xlsx">downloaden</a> en naar wens aanpassen.</p>
+        <p>Je kunt dit dashboard <a href="/dashboard.xlsx">downloaden</a> en naar wens aanpassen. Kies hieronder voor de optie <em>Gebruik eigen dashboard</em> als je (opnieuw) maatwerkplannen wilt toevoegen aan dat eigen dashboard.</p>
         </div>
         </article>
     <div class="select">

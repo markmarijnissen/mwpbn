@@ -64,7 +64,7 @@
 </template>
 <script setup lang="ts">
 import Fileupload from '~/components/Fileupload.vue';
-import { files, removeInvalidFiles, removeOldVersions } from "../services/files";
+import { files, removeInvalidFiles, removeOldVersions, removeFile } from "../services/files";
 import dayjs from 'dayjs';
 import _ from "lodash";
 
