@@ -3,6 +3,7 @@ import { set, get } from 'idb-keyval';
 import ExcelJS from "exceljs";
 import _ from "lodash";
 
+export const database = shallowRef([]);
 export const files = shallowRef([]);
 export const dashboard = ref({
   type: "default",
@@ -11,6 +12,10 @@ export const dashboard = ref({
   customContent: null,
   workbook: null
 });
+
+export const criteria = []
+
+window.database = database;
 
 export const addFiles = async (file) => {
   const newFiles = file.name.endsWith('.zip') ? await unzip(file) : [ { filename: file.name, content: await file.arrayBuffer()}];
@@ -69,10 +74,21 @@ const createDashboardWorkbook = async () => {
     }
   });
 
+  // load criteria
+  if(criteria.length === 0) {
+    const sheet = dashboardWb.worksheets.find(s => s.name.includes('2. Opgaven'));
+    for(let nr = 1; nr < 42; nr++) {
+      criteria.push(sheet.getCell(nr+3, 2).value);
+    }
+  }
+
   // Loop through all uploaded files
-  await Promise.all(files.value.filter(file => file.data.valid).map(async (file, i) => {
-    await addPlanToDashboard(file, dashboardWb, i + 1);
-  }));
+  database.value = (await Promise.all(
+    files.value
+      .filter(file => file.data.valid)
+      .map(async (file, i) =>  await addPlanToDashboard(file, dashboardWb, i + 1))
+  ))
+  .flat();
 
   dashboard.value.workbook = markRaw(dashboardWb);
 }

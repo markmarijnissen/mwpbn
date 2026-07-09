@@ -3,7 +3,7 @@
     <h4>Stap 1. Selecteer maatwerkplannen</h4>
     <article class="message">
         <div class="message-body">
-        <a href="https://boerennatuurnl.sharepoint.com/sites/DoorontwikkelingBoerenNatuur/Gedeelde%20documenten/Forms/AllItems.aspx?id=%2Fsites%2FDoorontwikkelingBoerenNatuur%2FGedeelde%20documenten%2FFase%202%20%2D%20Maatwerkplannen%2F1%2E%20Maatwerkplannen%2FMaatwerkplannen%20collectieven&viewid=60e6f717%2D647a%2D4a22%2Db25d%2Db07ead4d0685&p=true" target="_blank">Download de hele map</a> als zip-bestand en voeg deze toe. Je kunt de maatwerkplannen ook één voor één selecteren.
+        <a :href="folderUrl" target="_blank">Download de hele map</a> als zip-bestand en voeg deze toe. Je kunt de maatwerkplannen ook één voor één selecteren.
         </div>
     </article>
     <Fileupload type="plan"></Fileupload>
@@ -67,6 +67,8 @@ import Fileupload from '~/components/Fileupload.vue';
 import { files, removeInvalidFiles, removeOldVersions, removeFile } from "../services/files";
 import dayjs from 'dayjs';
 import _ from "lodash";
+
+const folderUrl = "https://boerennatuurnl.sharepoint.com/:f:/r/sites/DoorontwikkelingBoerenNatuur/Gedeelde%20documenten/Fase%203%20-%20Maatwerkplannen%20uitvoeren/1.%20Definitieve%20maatwerkplannen?csf=1&web=1&e=ifJcmw";
 
 function formatDate(d) {
     return dayjs(d).format("DD MMM YYYY (HH:mm)");

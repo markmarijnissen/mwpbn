@@ -2,6 +2,7 @@ import dayjs from "dayjs";
 
 export async function addPlanToDashboard(file, wb, index) {
   const planData = file.data;
+  const list = [];
 
   // --- TAB 1: Contactgegevens ---
   const sheet1 = wb.worksheets.find(s => s.name.includes('1. Contactgegevens'));
@@ -36,9 +37,9 @@ export async function addPlanToDashboard(file, wb, index) {
     if (!sheet) return;
 
     // remove old
-    sheet.conditionalFormattings = sheet.conditionalFormattings.filter(cf => cf.ref !== "H4:AU45");
+    sheet.conditionalFormattings = (sheet.conditionalFormattings || []).filter(cf => cf.ref !== "H4:AU45");
     // re-add
-    sheet.addConditionalFormatting({
+    if(sheet.addConditionalFormatting) sheet.addConditionalFormatting({
       ref: "H4:AU45",
       rules: [
         {
@@ -60,6 +61,7 @@ export async function addPlanToDashboard(file, wb, index) {
       ]
 
     })
+    if(!sheet.addConditionalFormatting) console.warn('No conditional formatting!');
 
     // Columns: exceljs is 1-based. 
     const nameCol = index + 7;
@@ -80,6 +82,21 @@ export async function addPlanToDashboard(file, wb, index) {
         //   sheet.getRow(rIdx).getCell(startValCol).note = dataObj[nr].toelichting;
         // }
         sheet.getRow(rIdx).getCell(startToelCol).value = dataObj[nr].toelichting;
+
+      //     let val = 0;
+      // if (voldoen && ontwikkel) val = 3;
+      // else if (voldoen) val = 1;
+      // else if (ontwikkel) val = 2;
+
+       const labels = ['onbekend','voldoet','ontwikkelopgave', 'voldoet & ontwikkelopgave'];
+
+        list.push({
+          nr,
+          name: planData.contactgegevens.collectief,
+          key: sheetName === '2. Opgaven' ? 'opgaven' : 'samenwerking',
+          value: dataObj[nr].toelichting,
+          score: labels[dataObj[nr].waarde]
+        });
       }
     }
   };
@@ -93,8 +110,8 @@ export async function addPlanToDashboard(file, wb, index) {
     const colIdx = index + 4; // Assuming it starts at column E (5) for index 1
 
     
-    sheet3.conditionalFormattings = sheet3.conditionalFormattings.filter(cf => cf.ref !== "E4:AR137");
-    sheet3.addConditionalFormatting({
+    sheet3.conditionalFormattings = (sheet3.conditionalFormattings || []).filter(cf => cf.ref !== "E4:AR137");
+    if(sheet3.addConditionalFormatting) sheet3.addConditionalFormatting({
       ref: "E4:AR137",
       rules: [
         {
@@ -177,6 +194,14 @@ export async function addPlanToDashboard(file, wb, index) {
             // Schrijf de waarde naar de cel!
             const cell = sheet5.getRow(targetRow).getCell(targetCol);
             cell.value = item[key];
+
+            list.push({
+              nr,
+              name: planData.contactgegevens.collectief,
+              key: key,
+              value: item[key],
+              score: null
+            });
           }
         }
       }
@@ -194,4 +219,6 @@ export async function addPlanToDashboard(file, wb, index) {
     }
     sheetBestanden.getRow(row).getCell(10).value = file.errors.join("\n");
   }
+
+  return list.filter(i => !!i.value);
 }

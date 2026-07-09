@@ -24,6 +24,13 @@
           <a @click="navigate" :href="null">3. Download</a>
         </li>
       </NuxtLink>
+
+      
+      <NuxtLink to="/search" custom v-slot="{ navigate, isActive }">
+        <li :class="{ 'is-active': isActive }">
+          <a @click="navigate" :href="null">Zoeken</a>
+        </li>
+      </NuxtLink>
     </ul>
   </div>
 </template>
